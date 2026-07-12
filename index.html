@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Idle Feederism</title>
+  <link rel="stylesheet" href="style.css?v=4">
+</head>
+<body>
+  <div id="app">
+
+    <header id="header">
+      <span id="gold-display">💰 0</span>
+      <span id="wave-display">Vague 1</span>
+    </header>
+
+    <main id="arena">
+      <div class="fighter" id="hero-side">
+        <div class="fighter-sprite" id="hero-sprite"><img id="hero-img" src="assets/images/normal.png" alt="Chevalière"></div>
+        <span class="fighter-name">Chevalière</span>
+        <div class="bar-container">
+          <div class="bar bar-stomach" id="hero-bar"></div>
+        </div>
+        <span class="bar-label" id="hero-label">0 / 100</span>
+      </div>
+
+      <span id="vs-text">VS</span>
+
+      <div class="fighter" id="monster-side">
+        <div class="fighter-sprite" id="monster-sprite"><img id="monster-img" src="assets/images/slime.png" alt="Slime"></div>
+        <span class="fighter-name" id="monster-name">Slime</span>
+        <div class="bar-container">
+          <div class="bar bar-hp" id="monster-bar"></div>
+        </div>
+        <span class="bar-label" id="monster-label">100 / 100</span>
+      </div>
+    </main>
+
+    <div id="defeat-screen" class="hidden">
+      <h2>💀 Défaite</h2>
+      <p>L'estomac est plein...</p>
+    </div>
+
+    <button id="btn-attack">👊 Attaquer</button>
+
+    <div id="upgrades">
+      <button class="upgrade-btn" id="up-damage">
+        <span class="up-icon">⚔️</span>
+        <span class="up-name">Dégâts</span>
+        <span class="up-value" id="val-damage">10</span>
+        <span class="up-cost">💰 10</span>
+      </button>
+      <button class="upgrade-btn" id="up-attacks">
+        <span class="up-icon">⚡</span>
+        <span class="up-name">Nb Attaques</span>
+        <span class="up-value" id="val-attacks">1</span>
+        <span class="up-cost">💰 10</span>
+      </button>
+      <button class="upgrade-btn" id="up-digestion">
+        <span class="up-icon">🍖</span>
+        <span class="up-name">Digestion</span>
+        <span class="up-value" id="val-digestion">1</span>
+        <span class="up-cost">💰 10</span>
+      </button>
+      <button class="upgrade-btn" id="up-capacity">
+        <span class="up-icon">🍽️</span>
+        <span class="up-name">Capa Estomac</span>
+        <span class="up-value" id="val-capacity">100</span>
+        <span class="up-cost">💰 10</span>
+      </button>
+    </div>
+
+    <button id="btn-log-toggle">📜 Journal</button>
+    <div id="log" class="hidden"></div>
+
+    <div id="float-layer"></div>
+
+  </div>
+  <script src="script.js?v=7"></script>
+</body>
+</html>

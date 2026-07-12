@@ -1,0 +1,289 @@
+/* ========================================
+   IDLE FEEDERISM V2 — style.css
+   ======================================== */
+
+/* --- Reset & Base --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0a0a1a;
+  --surface:   #111128;
+  --card:      #1a1a38;
+  --border:    #2a2a55;
+  --text:      #d4d0e0;
+  --text2:     #7777aa;
+  --gold:      #ffd700;
+  --red:       #ff4455;
+  --green:     #44dd66;
+  --blue:      #4499ff;
+  --orange:    #ff8833;
+  --radius:    8px;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* --- App Container --- */
+#app {
+  width: 100%;
+  max-width: 520px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+
+@media (min-width: 800px) {
+  #app { max-width: 600px; border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+}
+
+/* --- Header --- */
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+#gold-display { color: var(--gold); font-weight: bold; font-size: 0.95rem; }
+#wave-display { color: var(--text2); font-size: 0.8rem; }
+
+/* --- Arena --- */
+#arena {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 16px 8px;
+  flex-shrink: 0;
+}
+
+.fighter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.fighter-sprite {
+  font-size: 3.5rem;
+  width: 100%;
+  max-width: 260px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+}
+
+.fighter-sprite img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  animation: idleBreathe 2s ease-in-out infinite;
+}
+
+@keyframes idleBreathe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.fighter-name {
+  font-size: 0.75rem;
+  color: var(--text2);
+  font-weight: 600;
+}
+
+/* --- Bars --- */
+.bar-container {
+  width: 100%;
+  max-width: 110px;
+  height: 10px;
+  background: #0d0d22;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.bar {
+  height: 100%;
+  width: 0%;
+  border-radius: 5px;
+  transition: width 0.4s ease;
+}
+
+.bar-stomach { background: linear-gradient(90deg, var(--orange), var(--red)); }
+.bar-hp      { background: linear-gradient(90deg, var(--red), #ff7788); }
+
+.bar-label {
+  font-size: 0.65rem;
+  color: var(--text2);
+}
+
+#vs-text {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--text2);
+  padding: 0 4px;
+  flex-shrink: 0;
+}
+
+/* --- Log --- */
+#log {
+  flex: 0 0 auto;
+  max-height: 200px;
+  min-height: 50px;
+  overflow-y: auto;
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  color: var(--text2);
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+#log.hidden { display: none; }
+
+#btn-log-toggle {
+  margin: 4px 14px;
+  padding: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text2);
+  font-size: 0.8rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+#btn-log-toggle:hover { color: var(--gold); border-color: var(--gold); }
+
+.log-entry { padding: 1px 0; }
+.log-entry:last-child { color: var(--gold); }
+
+/* --- Attack Button --- */
+#btn-attack {
+  margin: 8px 14px;
+  padding: 14px;
+  background: var(--card);
+  border: 2px solid var(--gold);
+  border-radius: var(--radius);
+  color: var(--gold);
+  font-size: 1.05rem;
+  font-weight: bold;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.1s, filter 0.1s;
+}
+
+#btn-attack:active {
+  transform: scale(0.94);
+  filter: brightness(1.3);
+}
+
+/* --- Upgrades --- */
+#upgrades {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 8px 14px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.upgrade-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 8px 4px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.15s, filter 0.15s;
+}
+
+.upgrade-btn:hover { border-color: var(--gold); filter: brightness(1.1); }
+.upgrade-btn:active { transform: scale(0.96); }
+.upgrade-btn.cannot-afford { opacity: 0.35; }
+
+.up-icon   { font-size: 1.2rem; }
+.up-name   { font-size: 0.7rem; font-weight: bold; }
+.up-value  { font-size: 0.65rem; color: var(--blue); }
+.up-cost   { font-size: 0.65rem; color: var(--gold); font-weight: bold; }
+
+/* --- Defeat Screen --- */
+#defeat-screen {
+  text-align: center;
+  padding: 16px;
+  margin: 0 14px;
+  background: var(--surface);
+  border: 2px solid var(--red);
+  border-radius: var(--radius);
+  flex-shrink: 0;
+}
+
+#defeat-screen.hidden { display: none; }
+
+#defeat-screen h2 { color: var(--red); font-size: 1.3rem; margin-bottom: 6px; }
+#defeat-screen p { color: var(--text2); font-size: 0.85rem; }
+
+/* --- Floating Damage Layer --- */
+#float-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 50;
+}
+
+.float-num {
+  position: absolute;
+  font-weight: bold;
+  font-size: 1rem;
+  animation: floatUp 0.7s ease-out forwards;
+  pointer-events: none;
+  white-space: nowrap;
+  text-shadow: 0 0 6px currentColor;
+}
+
+.float-num.red   { color: var(--red); }
+.float-num.green { color: var(--green); }
+.float-num.gold  { color: var(--gold); }
+
+@keyframes floatUp {
+  0%   { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-50px) scale(1.2); }
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* --- Responsive --- */
+@media (max-width: 400px) {
+  .fighter-sprite { max-width: 160px; }
+  #btn-attack { margin: 6px 10px; padding: 12px; font-size: 0.95rem; }
+  .upgrade-btn { padding: 6px 3px; }
+}
